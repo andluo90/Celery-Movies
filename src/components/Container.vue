@@ -6,7 +6,8 @@
       </div>
       
     </section>
-    <Footer v-if="isLoading"></Footer>
+    
+    <Footer ></Footer>
     <div class="loading" v-if="isLoading">
         <span class="iconfont icon-Loading"></span>
     </div>
@@ -24,9 +25,7 @@ export default {
   },
   data () {
     return {
-      
-      isLoading: true,
-      isShowFooter: true
+      isLoading: this.$store.state.isLoading
     }
   }
 }
