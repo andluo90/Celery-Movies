@@ -3,27 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Vuex from 'vuex'
 import { log } from 'util';
-
-Vue.use(Vuex)
+import store from './store'
 
 Vue.config.productionTip = false
 
-const store = new Vuex.Store({
-  state:{
-    isLoading:false,
-    currentTab:'top'
-  },
-  mutations:{
-    toggleTab(state,payload){
-      
-      state.currentTab = payload.tab;
-      console.log(state.currentTab);
-      
-    }
-  }
-})
+
 
 /* eslint-disable no-new */
 new Vue({
