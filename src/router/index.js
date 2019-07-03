@@ -10,6 +10,21 @@ export default new Router({
       path: '/',
       name: 'Container',
       component: Container
+    },
+    {
+      path: '/hot',
+      name: 'hot',
+      component: Container
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: Container
+    },
+    {
+      path: '/like',
+      name: 'like',
+      component: Container
     }
   ]
 })

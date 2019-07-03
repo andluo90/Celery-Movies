@@ -7,7 +7,6 @@
       
     </section>
     
-    <Footer ></Footer>
     <div class="loading" v-if="isLoading">
         <span class="iconfont icon-Loading"></span>
     </div>
@@ -16,17 +15,12 @@
 </template>
 
 <script>
-import Footer from '@/components/Footer'
+import {mapState} from 'vuex'
 export default {
-  
   name: 'Container',
-  components:{
-    Footer
-  },
-  data () {
-    return {
-      isLoading: this.$store.state.isLoading
-    }
+  
+  computed:{
+    ...mapState(['isLoading'])
   }
 }
 </script>

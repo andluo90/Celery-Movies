@@ -1,21 +1,29 @@
 <template>
     <div class="footer">
-        <div :class="currentTab==='top'?'active':''"  @click="toggleTab('top')">
-            <span class="iconfont icon-top250"></span>
-            <span>Top250</span>
-        </div>
-        <div :class="currentTab==='hot'?'active':''" @click="toggleTab('hot')">
-            <span class="iconfont icon-75"></span>
-            <span>热播</span>   
-        </div>
-        <div :class="currentTab==='search'?'active':''" @click="toggleTab('search')">
-            <span class="iconfont icon-sousuo"></span>
-            <span>搜索</span>
-        </div>
-        <div data-id="xihuan" :class="currentTab==='like'?'active':''"  @click="toggleTab('like')">
-            <span class="iconfont icon-xihuan"></span>
-            <span>收藏</span>
-        </div>
+        <router-link to="/">
+            <div class="wrapper" :class="currentTab==='top'?'active':''"  @click="toggleTab('top')">
+                <span class="iconfont icon-top250"></span>
+                <span>Top250</span>
+            </div>
+        </router-link>
+        <router-link to="hot">
+            <div class="wrapper" :class="currentTab==='hot'?'active':''" @click="toggleTab('hot')">
+                <span class="iconfont icon-75"></span>
+                <span>热播</span>   
+            </div>
+        </router-link>
+        <router-link to="search">
+            <div class="wrapper" to="/search" :class="currentTab==='search'?'active':''" @click="toggleTab('search')">
+                <span class="iconfont icon-sousuo"></span>
+                <span>搜索</span>
+            </div>
+        </router-link>
+        <router-link to="like">
+            <div class="wrapper" to="/like" data-id="xihuan" :class="currentTab==='like'?'active':''"  @click="toggleTab('like')">
+                <span class="iconfont icon-xihuan"></span>
+                <span>收藏</span>
+            </div>
+         </router-link>
     </div>
         
 </template>
@@ -48,8 +56,16 @@ export default {
           bottom:0;
           display: flex;
 
-          > div {
-            flex:1;
+          > a {
+              flex:1;
+              text-decoration: none;
+              
+          }
+
+          .wrapper {
+            text-decoration: none;
+            color:#333;
+            
             text-align: center;
 
             &.active {
