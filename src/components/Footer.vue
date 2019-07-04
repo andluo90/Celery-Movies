@@ -55,6 +55,7 @@ export default {
           position:sticky;
           bottom:0;
           display: flex;
+          background: #fff;
 
           > a {
               flex:1;

@@ -1,11 +1,7 @@
 <template>
   <div class="Container">
     <section>
-      <div id="test">
-        test
-        <Top></Top>
-      </div>
-      
+      <Top></Top>
     </section>
     <Loading v-if="isLoading"></Loading>
     
@@ -34,11 +30,8 @@ export default {
     .Container {
         position: relative;
 
-        #test {
-          height: 2000px;
-        }
-
         >section {
+          padding:10px;
           overflow:scroll;
           -webkit-overflow-scrolling: touch;
         }
