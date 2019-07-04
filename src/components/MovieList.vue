@@ -14,7 +14,7 @@
                         <div class="extra">{{ movie.year }} / {{ movie.genres.join('、') }}</div>
                         <div class="extra">导演：{{ movie.directors | formatPeople }}</div>
                         <div class="extra">主演：{{ movie.casts | formatPeople }}</div>
-                        <span class="iconfont icon-xihuan ${status}" @click="unlike(movie)"></span> 
+                        <span class="iconfont icon-xihuan" :class="islike(movie.id)" @click="like(movie)"></span> 
                     </div>
                 </a>
             </div>
@@ -32,12 +32,23 @@ export default {
         data:Array
     },
 
+
     methods:{
       like:function(movie){
           this.$store.commit('like',movie)
       },
       unlike:function(movie){
           this.$store.commit('unlike',movie)
+      },
+      islike:function(id){
+          let reslut = ''
+          this.$store.state.likeList.forEach((movie)=>{
+              console.log(`id is ${id} , i is ${movie.id}`)
+              if(id === movie.id){
+                  reslut = 'active'
+              }
+          })
+          return reslut
       }
     },
     
