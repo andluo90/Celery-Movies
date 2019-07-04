@@ -2,7 +2,8 @@
   <div class="Container">
     <section>
       <div id="test">
-        test...
+        test
+        <Top></Top>
       </div>
       
     </section>
@@ -15,10 +16,12 @@
 <script>
 import {mapState} from 'vuex'
 import Loading from './Loading'
+import Top from './Top'
 export default {
   name: 'Container',
   components:{
-    Loading
+    Loading,
+    Top
   },
   computed:{
     ...mapState(['isLoading'])

@@ -59,7 +59,9 @@ export default {
           > a {
               flex:1;
               text-decoration: none;
+              cursor: default;
               
+
           }
 
           .wrapper {
@@ -67,6 +69,7 @@ export default {
             color:#333;
             
             text-align: center;
+            
 
             &.active {
                 color:#ff5722;

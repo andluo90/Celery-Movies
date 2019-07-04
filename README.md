@@ -3,7 +3,7 @@
 > A Vue.js project
 
 ### 技术栈
-flex布局/
+flex布局/vue/vuex/vue-router
 
 
 ### 解决的问题
