@@ -1,6 +1,6 @@
 <template>
     <div class="item" :data-movie-id="movie.id" :key="movie.id" :ref="movie.id">
-        <a href="#/">
+        <a >
             <div class="cover">
                 <img src="http://img3.doubanio.com/f/movie/b6dc761f5e4cf04032faa969826986efbecd54bb/pics/movie/movie_default_small.png" :data-src = "movie.images.small" alt="">
             </div>
