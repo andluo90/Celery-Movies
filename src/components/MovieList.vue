@@ -1,6 +1,6 @@
 <template>
-    <div class="top" ref="top">
-        <template v-for="movie in movieList" ref="item">
+    <div >
+        <template v-for="movie in data" ref="item">
             <div class="item" :data-movie-id="movie.id" :key="movie.id" >
                 <a href="#/">
                     <div class="cover">
@@ -26,15 +26,9 @@
 import jsonp from 'jsonp'
 export default {
     name:"MovieList",
-    
-    data(){
-      return {
-          apikey:'0b2bdeda43b5688921839c8ecb20399b',
-          start:0,
-          count:20,
-          movieList:null
 
-      }
+    props:{
+        data:Array
     },
     
     filters:{
@@ -46,29 +40,6 @@ export default {
             return tmp.join('、')
         }
     },
-    
-
-
-    beforeMount(){
-        jsonp(`//api.douban.com/v2/movie/top250?apikey=${this.apikey}&start=${this.start}&count=${this.count}`,
-                null,
-                (error,data)=>{
-                    if(error){
-                        console.log("请求失败.");
-                        console.log(error);
-                    }else{
-                        console.log("请求成功.");
-                        this.movieList = data.subjects
-                        this.start += 20
-                    }
-                }
-            )
-        console.log('before mount...')
-        
-    },
-    mounted(){
-        console.log('mounted....')
-    }
     
 }
 </script>

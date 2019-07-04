@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view/>
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
     <Footer ></Footer>
   </div>
 </template>
@@ -24,7 +26,7 @@ export default {
       text-decoration: none;
       color:#333;
     }
-    
+
     #app {
       font-size: 12px;
       line-height: 1.2;

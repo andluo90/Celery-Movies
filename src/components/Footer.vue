@@ -1,25 +1,25 @@
 <template>
     <div class="footer">
         <router-link to="/">
-            <div class="wrapper" :class="currentTab==='Top'?'active':''"  @click="toggleTab('top')">
+            <div class="wrapper" :class="currentTab==='Top'?'active':''"  @click="toggleTab('Top')">
                 <span class="iconfont icon-top250"></span>
                 <span>Top250</span>
             </div>
         </router-link>
         <router-link to="hot">
-            <div class="wrapper" :class="currentTab==='Hot'?'active':''" @click="toggleTab('hot')">
+            <div class="wrapper" :class="currentTab==='Hot'?'active':''" @click="toggleTab('Hot')">
                 <span class="iconfont icon-75"></span>
                 <span>热播</span>   
             </div>
         </router-link>
         <router-link to="search">
-            <div class="wrapper" to="/search" :class="currentTab==='Search'?'active':''" @click="toggleTab('search')">
+            <div class="wrapper" to="/search" :class="currentTab==='Search'?'active':''" @click="toggleTab('Search')">
                 <span class="iconfont icon-sousuo"></span>
                 <span>搜索</span>
             </div>
         </router-link>
         <router-link to="like">
-            <div class="wrapper" to="/like" data-id="xihuan" :class="currentTab==='Like'?'active':''"  @click="toggleTab('like')">
+            <div class="wrapper" to="/like" data-id="xihuan" :class="currentTab==='Like'?'active':''"  @click="toggleTab('Like')">
                 <span class="iconfont icon-xihuan"></span>
                 <span>收藏</span>
             </div>
@@ -41,6 +41,7 @@ export default {
             if(this.currentTab !== value){
                const payload = {tab:value}
                this.$store.commit('toggleTab',payload)
+               
             }
         }
     }
