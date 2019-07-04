@@ -53,7 +53,7 @@ export default {
           border-top:1px solid #ccc;
           height: 50px;
           width: 100%;
-          position:sticky;
+          position:fixed;
           bottom:0;
           display: flex;
           background: #fff;
