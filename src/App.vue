@@ -10,10 +10,23 @@
 <script>
 import Footer from '@/components/Footer'
 export default {
-  name: 'App',
-  components:{
-    Footer
-  },
+    name: 'App',
+    components:{
+      Footer
+    },
+
+    mounted(){
+        //初始化 like list..
+        let data = localStorage.getItem('douban_movies')
+        if(data !== null){
+          data = JSON.parse(data)
+          this.$store.commit('initLikeList',{data})
+        }else {
+          console.log(`like list is null...`)
+        }
+
+    }
+  
 }
 </script>
 <style>

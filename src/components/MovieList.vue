@@ -1,7 +1,7 @@
 <template>
     <div >
-        <template v-for="movie in data" ref="item">
-            <div class="item" :data-movie-id="movie.id" :key="movie.id" >
+        <template v-for="movie in data" >
+            <div class="item" :data-movie-id="movie.id" :key="movie.id" :ref="movie.id">
                 <a href="#/">
                     <div class="cover">
                         <img src="http://img3.doubanio.com/f/movie/b6dc761f5e4cf04032faa969826986efbecd54bb/pics/movie/movie_default_small.png" :data-src = "movie.images.small" alt="">
@@ -14,7 +14,7 @@
                         <div class="extra">{{ movie.year }} / {{ movie.genres.join('、') }}</div>
                         <div class="extra">导演：{{ movie.directors | formatPeople }}</div>
                         <div class="extra">主演：{{ movie.casts | formatPeople }}</div>
-                        <span class="iconfont icon-xihuan ${status}"></span> 
+                        <span class="iconfont icon-xihuan ${status}" @click="unlike(movie)"></span> 
                     </div>
                 </a>
             </div>
@@ -24,11 +24,21 @@
 </template>
 <script>
 import jsonp from 'jsonp'
+
 export default {
     name:"MovieList",
 
     props:{
         data:Array
+    },
+
+    methods:{
+      like:function(movie){
+          this.$store.commit('like',movie)
+      },
+      unlike:function(movie){
+          this.$store.commit('unlike',movie)
+      }
     },
     
     filters:{
