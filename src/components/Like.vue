@@ -18,9 +18,9 @@ export default {
         MovieList
     },
 
-    data(){
-        return {
-            movieList:this.$store.state.likeList
+    computed:{
+        movieList:function(){
+            return this.$store.state.likeList
         }
     },
 
