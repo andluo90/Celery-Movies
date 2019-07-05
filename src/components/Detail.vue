@@ -1,7 +1,9 @@
 <template>
     <div id="detail">
-        <div class="movie_detail">
-            <div v-if="movie !== null" class="card">
+        <Loading v-if="movie === null"></Loading>
+        <div v-else class="movie_detail">
+
+            <div  class="card">
                 <h1>{{ movie.title }}</h1>
                 <div class="subject">
                     <div class="left">
@@ -57,9 +59,13 @@
 </template>
 <script>
 import jsonp from 'jsonp'
+import Loading from './Loading'
 
 export default {
     name:"Detail",
+    components:{
+        Loading
+    },
     data(){
         return {
             apikey:this.$store.state.apikey,
