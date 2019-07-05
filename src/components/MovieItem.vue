@@ -63,11 +63,9 @@ export default {
           return reslut
       },
       showDetail:function(){
-          console.log(`show moive...`);
-          
           const payload = {
               isShowDetail:true,
-              movie:this.movie
+              id:this.movie.id
           }
           this.$store.commit('setIsShowDetail',payload)
       }

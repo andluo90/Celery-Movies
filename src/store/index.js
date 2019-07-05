@@ -10,7 +10,7 @@ export default new Vuex.Store({
       likeList:[],
       apikey:'0b2bdeda43b5688921839c8ecb20399b',
       isShowDetail:false,
-      movieDeaitl:null
+      movieId:null
 
     },
     mutations:{
@@ -45,7 +45,7 @@ export default new Vuex.Store({
       },
       setIsShowDetail(state,payload){
         state.isShowDetail = payload.isShowDetail
-        state.movieDeaitl = payload.movie
+        state.movieId = payload.id
       }
     }
 })

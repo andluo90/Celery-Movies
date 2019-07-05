@@ -1,7 +1,7 @@
 <template>
     <div id="detail">
         <div class="movie_detail">
-            <div class="card">
+            <div v-if="movie !== null" class="card">
                 <h1>{{ movie.title }}</h1>
                 <div class="subject">
                     <div class="left">
@@ -10,17 +10,17 @@
                             <strong class="score">{{ movie.rating.average }}</strong>
                             <span class="count">{{ movie.ratings_count }}人评价</span>
                         </p>
-                        <p class="meta">${meta}
+                        <p class="meta">{{ meta }}
                         </p>
                     </div>
                     <div class="right">
                         <img :src="movie.images.small" alt="">
                     </div>
                 </div>
-                <!-- <div class="channel_tags">
+                <div class="channel_tags">
                     <h2>所属频道</h2>
                     <ul>
-                        ${tags.join('')}
+                        <li class="channel_tag" v-for="tag in tags" :key="tag"><a href="">{{ tag }}</a></li>
                     </ul>
                 </div>
                 <div class="intro">
@@ -33,9 +33,20 @@
                 <div class="celebrities">
                     <h2>影人</h2>
                     <ul>
-                        ${celebrities}        
+                        <li v-for="(director,index) in movie.directors" :key="index">
+                            <div class="poster" :style="`
+                            background-image: url('${director.avatars.small}')`"></div>
+                            <span class="name">{{ director.name }}</span>
+                            <span class="role">导演</span>
+                        </li> 
+                        <li v-for="(cast,index) in movie.casts" :key="index">
+                            <div class="poster" :style="`
+                            background-image: url('${cast.avatars.small}')`"></div>
+                            <span class="name">{{ cast.name }}</span>
+                            <span class="role">演员</span>
+                        </li>       
                     </ul>
-                </div> -->
+                </div>
             </div>
             <div class="close">
                 <button @click="close">关闭</button>
@@ -45,23 +56,80 @@
 
 </template>
 <script>
+import jsonp from 'jsonp'
+
 export default {
     name:"Detail",
-
-    
-    computed:{
-        movie:function(){
-            return this.$store.state.movieDeaitl
+    data(){
+        return {
+            apikey:this.$store.state.apikey,
+            movie:null
         }
+    },
+    computed:{
+        movieId:function(){
+            return this.$store.state.movieId
+        },
+        
+        meta_directors:function(){
+            let temp = ''
+            this.movie.directors.map((director)=>{
+                temp += director.name+'(导演) / '
+            })
+            return temp;
+        },
+        meta_casts:function(){
+            let temp = ''
+            this.movie.casts.map((cast)=>{
+                temp += cast.name+' / '
+            })
+            return temp;
+        },
+        celebrities:function(){
+
+        },
+        meta:function(){
+            return `${this.movie.durations[0]+' / '+this.movie.genres.join(' / ')+' / '+this.meta_directors+this.meta_casts+this.movie.pubdates.join(' / ')}`
+        },
+        tags:function(){
+            console.log(this.movie)
+            return this.movie.tags.map((tag)=>{
+                return tag
+            })
+        }
+        
+
     },
     methods:{
         close:function(){
             this.$store.commit('setIsShowDetail',{isShowDetail:false,movie:null})
+        },
+        getDetailData(){
+            jsonp(`//api.douban.com/v2/movie/subject/${this.movieId}?apikey=${this.apikey}`,
+                null,
+                (error,data)=>{
+                    if(error){
+                        console.log("请求电影详情数据失败.");
+                        console.log(error);
+                    }else{
+                        console.log("请求电影详情数据成功.");
+                        console.log(data)
+                        this.movie = data
+                    }
+                }
+            )
         }
+    },
+    created(){
+        this.getDetailData()
     }
+    
 }
 </script>
 <style lang="scss" scoped>
+    ul , li {
+        list-style: none;
+    }
     #detail {
         background: rgba(0,0,0,0.4);
         position: absolute;
@@ -95,7 +163,7 @@ export default {
                     }
                 }
 
-                >.channel_tags {
+                .channel_tag {
                     // margin-bottom: 30px;
                     background-color: #effaf0;
                     border: 1px solid #42bd56;
