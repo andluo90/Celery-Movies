@@ -7,7 +7,9 @@ export default new Vuex.Store({
     state:{
       isLoading:false,
       currentTab:'top',
-      likeList:[]
+      likeList:[],
+      apikey:'0b2bdeda43b5688921839c8ecb20399b',
+
     },
     mutations:{
       toggleTab(state,payload){

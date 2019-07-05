@@ -14,7 +14,7 @@ export default {
     },
     data(){
       return {
-          apikey:'0b2bdeda43b5688921839c8ecb20399b',
+          apikey:this.$store.state.apikey,
           movieList:null
       }
     },
