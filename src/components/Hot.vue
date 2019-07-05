@@ -18,10 +18,13 @@ export default {
           movieList:null
       }
     },
+    
     beforeMount(){
+        this.$store.commit('setLoading',{status:true})
         jsonp(`//api.douban.com/v2/movie/in_theaters?apikey=${this.apikey}`,
                 null,
                 (error,data)=>{
+                    this.$store.commit('setLoading',{status:false})
                     if(error){
                         console.log("请求失败.");
                         console.log(error);
@@ -32,7 +35,7 @@ export default {
                     }
                 }
             )
-        console.log('before mount...')
+        
         
     },
 

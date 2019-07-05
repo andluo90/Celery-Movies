@@ -9,7 +9,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
+    $color:#ff5722;
     @keyframes rotate {
         0% {
             transform: rotate(0deg);
@@ -28,7 +28,7 @@ export default {
         .iconfont {
             display: inline-block;
             font-size: 3em;
-            color:lightpink;
+            color:$color;
             animation: 1s rotate linear infinite;
         }
     }

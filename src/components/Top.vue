@@ -23,9 +23,11 @@ export default {
       }
     },
     beforeMount(){
+        this.$store.commit('setLoading',{status:true})
         jsonp(`//api.douban.com/v2/movie/top250?apikey=${this.apikey}&start=${this.start}&count=${this.count}`,
                 null,
                 (error,data)=>{
+                    this.$store.commit('setLoading',{status:false})
                     if(error){
                         console.log("请求失败.");
                         console.log(error);

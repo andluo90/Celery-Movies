@@ -35,6 +35,9 @@ export default new Vuex.Store({
         likeList.splice(movie_index,1)
         localStorage.setItem('douban_movies',JSON.stringify(likeList))
         console.log('remove like done...')
+      },
+      setLoading(state,payload){
+        state.isLoading = payload.status
       }
     }
 })

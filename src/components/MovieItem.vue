@@ -77,6 +77,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+    $color:red;
     .item {
         border-bottom: 1px solid #ccc;
         padding-bottom:10px;
@@ -108,7 +109,7 @@ export default {
             }
 
             .score {
-                color:#ff5722;
+                color:$color;
             }
 
             .icon-xihuan {
@@ -119,7 +120,7 @@ export default {
                 font-size: 2.1em;
 
                 &.active {
-                    color:red;
+                    color:$color;
                 }
             }
         }
