@@ -39,7 +39,7 @@
                             <span class="name">{{ director.name }}</span>
                             <span class="role">导演</span>
                         </li> 
-                        <li v-for="(cast,index) in movie.casts" :key="index">
+                        <li v-for="(cast,index) in movie.casts" :key="index+'cast'">
                             <div class="poster" :style="`
                             background-image: url('${cast.avatars.small}')`"></div>
                             <span class="name">{{ cast.name }}</span>

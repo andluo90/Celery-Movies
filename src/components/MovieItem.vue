@@ -12,7 +12,7 @@
                 <div class="extra">{{ movie.year }} / {{ movie.genres.join('、') }}</div>
                 <div class="extra">导演：{{ movie.directors | formatPeople }}</div>
                 <div class="extra">主演：{{ movie.casts | formatPeople }}</div>
-                <span class="iconfont icon-xihuan" :class="islike(movie.id)" @click="click"></span> 
+                <span class="iconfont icon-xihuan" :class="islike(movie.id)" @click.stop="click"></span> 
             </div>
         </a>
     </div>
