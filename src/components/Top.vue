@@ -1,5 +1,5 @@
 <template>
-    <div class="top">
+    <div class="top" :class="classes">
         <MovieList :data="movieList"></MovieList>
     </div>
     
@@ -21,6 +21,11 @@ export default {
           movieList:null
 
       }
+    },
+    computed:{
+        classes(){
+            return this.$store.state.isShowDetail ? 'hide':''
+        }
     },
     beforeMount(){
         this.$store.commit('setLoading',{status:true})
@@ -55,6 +60,11 @@ export default {
 
     .top {
         padding:10px;
+
+        &.hide {
+            position: absolute;
+            left:-150%;
+        }
     }
 
 </style>
