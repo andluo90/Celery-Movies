@@ -63,7 +63,7 @@ export default {
 
         &.hide {
             position: absolute;
-            left:-150%;
+            left: -140%;
         }
     }
 

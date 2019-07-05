@@ -1,5 +1,5 @@
 <template>
-    <div class="hot">
+    <div class="hot" :class="classes">
         <MovieList :data="movieList"></MovieList>
     </div>
 </template>
@@ -18,7 +18,11 @@ export default {
           movieList:null
       }
     },
-    
+    computed:{
+        classes(){
+            return this.$store.state.isShowDetail ? 'hide':''
+        }
+    },
     beforeMount(){
         this.$store.commit('setLoading',{status:true})
         jsonp(`//api.douban.com/v2/movie/in_theaters?apikey=${this.apikey}`,
@@ -47,6 +51,10 @@ export default {
 <style lang="scss" scoped>
     .hot {
         padding:10px;
+        &.hide {
+            position: absolute;
+            left: -140%;
+        }
     }
 </style>
 

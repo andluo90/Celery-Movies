@@ -1,5 +1,5 @@
 <template>
-    <div class="like">
+    <div class="like" :class="classes">
         
         <div class="empty" v-if="movieList.length === 0">
             <span class="iconfont icon-empty"></span>
@@ -21,8 +21,12 @@ export default {
     computed:{
         movieList:function(){
             return this.$store.state.likeList
+        },
+        classes(){
+            return this.$store.state.isShowDetail ? 'hide':''
         }
     },
+    
 
     mounted(){
         this.$store.commit('toggleTab',{tab:"Like"})
@@ -32,6 +36,11 @@ export default {
 <style lang="scss" scoped>
     .like {
         padding:10px;
+
+        &.hide {
+            position: absolute;
+            left: -140%;
+        }
 
         .empty {
             text-align:center;

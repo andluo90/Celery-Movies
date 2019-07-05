@@ -1,5 +1,5 @@
 <template>
-    <div class="search">
+    <div class="search" :class="classes">
         <div class="wrap">
                 <div class="search-area">
                     <input type="search" v-model="value"  placeholder="搜索电影">
@@ -41,6 +41,11 @@ export default {
             movieList:[],
         }
     },
+    computed:{
+        classes(){
+            return this.$store.state.isShowDetail ? 'hide':''
+        }
+    },
     methods:{
         search:function(){
             jsonp(`//api.douban.com/v2/movie/search?apikey=${this.apikey}&q=${this.value}`,
@@ -66,6 +71,10 @@ export default {
 <style lang="scss" scoped>
     .search {
         padding:10px;
+        &.hide {
+            position: absolute;
+            left: -140%;
+        }
     }
     .search-area {
         color: #333;
