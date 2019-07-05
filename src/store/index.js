@@ -9,6 +9,8 @@ export default new Vuex.Store({
       currentTab:'top',
       likeList:[],
       apikey:'0b2bdeda43b5688921839c8ecb20399b',
+      isShowDetail:false,
+      movieDeaitl:null
 
     },
     mutations:{
@@ -40,6 +42,10 @@ export default new Vuex.Store({
       },
       setLoading(state,payload){
         state.isLoading = payload.status
+      },
+      setIsShowDetail(state,payload){
+        state.isShowDetail = payload.isShowDetail
+        state.movieDeaitl = payload.movie
       }
     }
 })

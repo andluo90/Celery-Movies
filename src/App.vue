@@ -1,18 +1,30 @@
 <template>
   <div id="app">
+
+    <Detail v-if="isShowDetail"></Detail>
+    
     <keep-alive>
       <router-view/>
     </keep-alive>
     <Footer ></Footer>
+    
+    
   </div>
 </template>
 
 <script>
 import Footer from '@/components/Footer'
+import Detail from '@/components/Detail'
 export default {
     name: 'App',
     components:{
-      Footer
+      Footer,
+      Detail
+    },
+    computed:{
+      isShowDetail:function(){
+        return this.$store.state.isShowDetail
+      }
     },
 
     mounted(){

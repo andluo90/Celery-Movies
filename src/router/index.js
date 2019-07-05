@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Container from '@/components/Container'
 import Top from '@/components/Top'
 import Hot from '@/components/Hot'
 import Search from '@/components/Search'
