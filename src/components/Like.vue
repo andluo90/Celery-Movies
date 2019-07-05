@@ -1,6 +1,11 @@
 <template>
     <div class="like">
-        <MovieList :data="movieList"></MovieList>
+        
+        <div class="empty" v-if="movieList.length === 0">
+            <span class="iconfont icon-empty"></span>
+            <div class="desc">暂无收藏哦.</div>
+        </div>
+        <MovieList v-else :data="movieList"></MovieList>
     </div>
     
 </template>
@@ -27,6 +32,25 @@ export default {
 <style lang="scss" scoped>
     .like {
         padding:10px;
+
+        .empty {
+            text-align:center;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+
+            .desc {
+                margin-top:5px;
+                font-size: 14px;
+                color: #999;                
+            }
+
+            .icon-empty {
+                font-size: 2rem;
+                color: #999;
+            }
+        }
     }
 </style>
 
