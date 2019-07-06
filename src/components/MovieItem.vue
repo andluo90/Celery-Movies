@@ -2,7 +2,6 @@
     <div class="item" :key="movie.id" @click='showDetail' >
         <a >
             <div class="cover">
-                <!-- <img src="http://img3.doubanio.com/f/movie/b6dc761f5e4cf04032faa969826986efbecd54bb/pics/movie/movie_default_small.png" :data-src = "movie.images.small" alt=""> -->
                 <img v-lazy="movie.images.small" alt="">
 
             </div>
@@ -14,8 +13,14 @@
                 <div class="extra">{{ movie.year }} / {{ movie.genres.join('、') }}</div>
                 <div class="extra">导演：{{ movie.directors | formatPeople }}</div>
                 <div class="extra">主演：{{ movie.casts | formatPeople }}</div>
-                <span v-if="status === 0" class="iconfont like icon-heart" :class="islike(movie.id)" @click.stop="click"></span>                 
-                <span v-else class="iconfont like icon-xihuan" :class="islike(movie.id)" @click.stop="click"></span> 
+                <transition name="fade">
+                    <span v-if="islike" class="iconfont like icon-heart" :class="islike?'active':''" @click.stop="unlike"></span>                 
+                </transition>
+                <transition name="fade">
+                    <span v-if="!islike" class="iconfont like icon-xihuan" @click.stop="like"></span> 
+                </transition>
+
+
             </div>
         </a>
     </div>
@@ -31,12 +36,20 @@ export default {
         }
     },
 
-    data:function(){
-        return {
-            status:1 //0 is like 1:is unlike
+   
+    computed:{
+        islike:function(){
+            let tmp = false
+            this.$store.state.likeList.forEach((movie)=>{
+              if(this.movie.id === movie.id){
+                  tmp = true
+              }
+            })
+            return tmp
         }
     },
-
+    
+    
     methods:{
       
       click:function(){
@@ -48,23 +61,13 @@ export default {
       },
       like:function(){
           this.$store.commit('like',this.movie)
-          this.status = 0;
+          
       },
       unlike:function(){
           this.$store.commit('unlike',this.movie)
-          this.status = 1
+          
       },
-      islike:function(id){
-          let reslut = ''
-          this.$store.state.likeList.forEach((movie)=>{
-              
-              if(id === movie.id){
-                  reslut = 'active'
-                  this.status = 0
-              }
-          })
-          return reslut
-      },
+    
       showDetail:function(){
           const payload = {
               isShowDetail:true,
@@ -89,6 +92,13 @@ export default {
 <style lang="scss" scoped>
     $color:red;
     .item {
+
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity .5s;
+        }
+        .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+            opacity: 0;
+        }
         border-bottom: 1px solid #ccc;
         padding-bottom:10px;
         padding-top:10px;
@@ -141,6 +151,8 @@ export default {
         
         
     }
+
+    
 
 
 
