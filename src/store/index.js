@@ -24,10 +24,8 @@ export default new Vuex.Store({
         
         state.likeList.unshift(payload)
         localStorage.setItem('douban_movies',JSON.stringify(state.likeList))
-        console.log("add like done...")
       },
       unlike(state,payload){
-        console.log(payload)
         let {likeList} = state
         let movie_index = null;
         for(let [index,movie] of likeList.entries()){
@@ -38,7 +36,6 @@ export default new Vuex.Store({
         }
         likeList.splice(movie_index,1)
         localStorage.setItem('douban_movies',JSON.stringify(likeList))
-        console.log('remove like done...')
       },
       setLoading(state,payload){
         state.isLoading = payload.status

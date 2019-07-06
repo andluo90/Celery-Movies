@@ -1,11 +1,12 @@
 <template>
     <div class="like" :class="classes">
-        
-        <div class="empty" v-if="movieList.length === 0">
-            <span class="iconfont icon-empty"></span>
-            <div class="desc">暂无收藏哦.</div>
-        </div>
-        <MovieList v-else :data="movieList"></MovieList>
+        <transition name="fade">
+            <div class="empty" v-if="movieList.length === 0">
+                <span class="iconfont icon-empty"></span>
+                <div class="desc">暂无收藏哦.</div>
+            </div>
+        </transition>
+        <MovieList v-if="movieList.length !== 0" :data="movieList"></MovieList>
     </div>
     
 </template>
@@ -60,6 +61,13 @@ export default {
                 font-size: 2rem;
                 color: #999;
             }
+        }
+
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity .5s;
+        }
+        .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+            opacity: 0;
         }
     }
 </style>
