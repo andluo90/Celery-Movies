@@ -13,12 +13,12 @@
                 <div class="extra">{{ movie.year }} / {{ movie.genres.join('、') }}</div>
                 <div class="extra">导演：{{ movie.directors | formatPeople }}</div>
                 <div class="extra">主演：{{ movie.casts | formatPeople }}</div>
-                <transition name="fade">
-                    <span v-if="islike" class="iconfont like icon-heart" :class="islike?'active':''" @click.stop="unlike"></span>                 
+                <transition name="fade" mode="out-in">
+                    <span v-if="islike" class="iconfont like icon-heart" :class="islike?'active':''" @click.stop="unlike" key="lkie"></span>                 
+                    <span v-else class="iconfont like icon-xihuan" @click.stop="like" key="unlike"></span> 
+                
                 </transition>
-                <transition name="fade">
-                    <span v-if="!islike" class="iconfont like icon-xihuan" @click.stop="like"></span> 
-                </transition>
+                
 
 
             </div>
@@ -94,7 +94,7 @@ export default {
     .item {
 
         .fade-enter-active, .fade-leave-active {
-            transition: opacity .5s;
+            transition: opacity .3s;
         }
         .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
             opacity: 0;
