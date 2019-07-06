@@ -4,9 +4,9 @@
             <Loading v-if="isLoading"></Loading>
         </transition>
         <template v-if="!isLoading">
-            <template v-for="movie in data" >
-                <MovieItem :movie="movie" :key="movie.id"></MovieItem>
-            </template>
+            <transition-group name="list" tag="p">
+                <MovieItem v-for="movie in data" :movie="movie" :key="movie.id"></MovieItem>
+            </transition-group>
         </template>
         
     </div>
@@ -37,10 +37,19 @@ export default {
 </script>
 <style lang="scss" scoped>
     .fade-enter-active, .fade-leave-active {
-            transition: opacity .5s;
+            transition: opacity .3s;
         }
     .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
         opacity: 0;
+    }
+
+    .list-enter-active, .list-leave-active {
+        transition: all 1s;
+    }
+    .list-enter, .list-leave-to
+        /* .list-leave-active for below version 2.1.8 */ {
+        opacity: 0;
+        transform: translateX(50px);
     }
 </style>
 
