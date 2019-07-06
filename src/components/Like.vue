@@ -36,6 +36,7 @@ export default {
 <style lang="scss" scoped>
     .like {
         padding:10px;
+        padding-bottom: 45px;
 
         &.hide {
             position: absolute;

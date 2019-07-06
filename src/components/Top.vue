@@ -26,6 +26,9 @@ export default {
     computed:{
         classes(){
             return this.$store.state.isShowDetail ? 'hide':''
+        },
+        loadingClass:{
+            
         }
     },
     methods:{

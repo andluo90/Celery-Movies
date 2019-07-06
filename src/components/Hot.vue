@@ -51,6 +51,7 @@ export default {
 <style lang="scss" scoped>
     .hot {
         padding:10px;
+        padding-bottom: 45px;
         &.hide {
             position: absolute;
             left: -140%;
