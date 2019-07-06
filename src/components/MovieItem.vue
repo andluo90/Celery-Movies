@@ -14,7 +14,8 @@
                 <div class="extra">{{ movie.year }} / {{ movie.genres.join('、') }}</div>
                 <div class="extra">导演：{{ movie.directors | formatPeople }}</div>
                 <div class="extra">主演：{{ movie.casts | formatPeople }}</div>
-                <span class="iconfont icon-xihuan" :class="islike(movie.id)" @click.stop="click"></span> 
+                <span v-if="status === 0" class="iconfont like icon-heart" :class="islike(movie.id)" @click.stop="click"></span>                 
+                <span v-else class="iconfont like icon-xihuan" :class="islike(movie.id)" @click.stop="click"></span> 
             </div>
         </a>
     </div>
@@ -121,17 +122,20 @@ export default {
                 color:$color;
             }
 
-            .icon-xihuan {
+            .like {
                 position: absolute;
                 right: 10px;
                 top: 50%;
                 transform: translateY(-70%);
                 font-size: 2.1em;
 
+                
+
                 &.active {
-                    color:$color;
+                    color:#f44336;
                 }
             }
+            
         }
 
         

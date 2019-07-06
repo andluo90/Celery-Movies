@@ -36,15 +36,11 @@
                     <h2>影人</h2>
                     <ul>
                         <li v-for="(director,index) in movie.directors" :key="index">
-                            <!-- <div class="poster" :style="`
-                            background-image: url('${director.avatars.small}')`"></div> -->
                             <img class="poster" v-lazy="director.avatars.small">
                             <span class="name">{{ director.name }}</span>
                             <span class="role">导演</span>
                         </li> 
                         <li v-for="(cast,index) in movie.casts" :key="index+'cast'">
-                            <!-- <div class="poster" :style="`
-                            background-image: url('${cast.avatars.small}')`"></div> -->
                             <img class="poster" v-lazy="cast.avatars.small">
 
                             <span class="name">{{ cast.name }}</span>

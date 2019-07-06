@@ -31,7 +31,7 @@ export default {
             return this.$store.state.isShowDetail ? 'hide':''
         },
         loadMoreText(){
-            if(this.start >= 60 ){
+            if(this.start >= 240 ){
                 return "已经没有了..."
             }else {
                 return this.isLoadingMore ? "正在加载中..." : "点击加载更多"
@@ -40,7 +40,7 @@ export default {
     },
     methods:{
         loadMore:function(){
-            if(this.start >= 60 ){
+            if(this.start >= 240 ){
                 return ''
             }
             this.isLoadingMore = true;
