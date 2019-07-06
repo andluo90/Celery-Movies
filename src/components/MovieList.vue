@@ -1,7 +1,8 @@
 <template>
     <div >
-        
-        <Loading v-if="isLoading"></Loading>
+        <transition name="fade">
+            <Loading v-if="isLoading"></Loading>
+        </transition>
         <template v-if="!isLoading">
             <template v-for="movie in data" >
                 <MovieItem :movie="movie" :key="movie.id"></MovieItem>
@@ -35,6 +36,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-    
+    .fade-enter-active, .fade-leave-active {
+            transition: opacity .5s;
+        }
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
+    }
 </style>
 
