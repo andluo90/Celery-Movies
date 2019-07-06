@@ -1,7 +1,7 @@
 <template>
     <div class="top" :class="classes">
         <MovieList :data="movieList"></MovieList>
-        <div class="more" @click="loadMore">点击加载更多</div>
+        <div v-if="!isLoading" class="more" @click="loadMore">{{ loadMoreText }}</div>
     </div>
     
 </template>
@@ -19,30 +19,42 @@ export default {
           apikey:this.$store.state.apikey,
           start:0,
           count:20,
-          movieList:[]
-
+          movieList:[],
+          isLoadingMore:false
       }
     },
     computed:{
+        isLoading(){
+            return this.$store.state.isLoading
+        },
         classes(){
             return this.$store.state.isShowDetail ? 'hide':''
         },
-        loadingClass:{
-            
+        loadMoreText(){
+            if(this.start >= 60 ){
+                return "已经没有了..."
+            }else {
+                return this.isLoadingMore ? "正在加载中..." : "点击加载更多"
+            }
         }
     },
     methods:{
         loadMore:function(){
-            console.log('加载更多...')
+            if(this.start >= 60 ){
+                return ''
+            }
+            this.isLoadingMore = true;
             jsonp(`//api.douban.com/v2/movie/top250?apikey=${this.apikey}&start=${this.start}&count=${this.count}`,
                     null,
                     (error,data)=>{
                         this.$store.commit('setLoading',{status:false})
                         if(error){
+                            this.isLoadingMore = false;
                             console.log("请求失败.");
                             console.log(error);
                         }else{
                             console.log("请求成功.");
+                            this.isLoadingMore = false;
                             const temp = JSON.stringify(this.movieList.concat(data.subjects))
                             this.movieList = JSON.parse(temp)
                             this.start += 20

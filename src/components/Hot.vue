@@ -1,6 +1,7 @@
 <template>
     <div class="hot" :class="classes">
         <MovieList :data="movieList"></MovieList>
+        <div v-if="!isLoading" class="more">已经没有了...</div>
     </div>
 </template>
 <script>
@@ -19,6 +20,9 @@ export default {
       }
     },
     computed:{
+        isLoading(){
+            return this.$store.state.isLoading
+        },
         classes(){
             return this.$store.state.isShowDetail ? 'hide':''
         }
@@ -55,6 +59,14 @@ export default {
         &.hide {
             position: absolute;
             left: -140%;
+        }
+        >.more {
+            font-size: 13px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+            padding-top: 15px;
+            color: #999;
         }
     }
 </style>
