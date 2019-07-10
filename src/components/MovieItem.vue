@@ -92,7 +92,7 @@ export default {
 <style lang="scss" scoped>
     $color:red;
     .item {
-
+        
         .fade-enter-active, .fade-leave-active {
             transition: opacity .3s;
         }

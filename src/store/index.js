@@ -18,7 +18,8 @@ export default new Vuex.Store({
         state.currentTab = payload.tab
       },
       initLikeList(state,payload){
-        state.likeList = payload.data
+        // state.likeList = payload.data
+        state.likeList.splice(0,0,...payload.data)
       },
       like(state,payload){
         

@@ -1,8 +1,9 @@
 <template>
   <div id="app">
+    <transition name="fade">
+      <Detail v-if="isShowDetail"></Detail>
+    </transition>
 
-    <Detail v-if="isShowDetail"></Detail>
-    
     <keep-alive>
       <router-view/>
     </keep-alive>
@@ -58,5 +59,11 @@ export default {
       font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
 
       
+    }
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
     }
 </style>

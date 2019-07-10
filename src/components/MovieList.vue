@@ -1,13 +1,13 @@
 <template>
     <div >
         <transition name="fade">
-            <Loading v-if="isLoading"></Loading>
+            <Loading v-if="isLoading" key='loading'></Loading>
+            <template v-else  >
+                <transition-group name="list" tag="p">
+                    <MovieItem v-for="movie in data" :movie="movie" :key="movie.id"></MovieItem>
+                </transition-group>
+            </template>
         </transition>
-        <template v-if="!isLoading">
-            <transition-group name="list" tag="p">
-                <MovieItem v-for="movie in data" :movie="movie" :key="movie.id"></MovieItem>
-            </transition-group>
-        </template>
         
     </div>
     
@@ -39,17 +39,22 @@ export default {
     .fade-enter-active, .fade-leave-active {
             transition: opacity .3s;
         }
-    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    .fade-enter, .fade-leave-to {
         opacity: 0;
     }
 
     .list-enter-active, .list-leave-active {
-        transition: all 1s;
+        transition: all .5s linear;
     }
-    .list-enter, .list-leave-to
-        /* .list-leave-active for below version 2.1.8 */ {
+    .list-enter{
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    .list-leave-to {
         opacity: 0;
         transform: translateX(50px);
     }
+
+   
 </style>
 
