@@ -58,7 +58,7 @@ export default {
         padding-bottom: 45px;
         &.hide {
             position: absolute;
-            left: -140%;
+            left: -160%;
         }
         >.more {
             font-size: 13px;
