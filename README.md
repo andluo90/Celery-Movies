@@ -8,12 +8,13 @@
 3. 增加过渡效果
 4. 利用Vue的响应式让页面更加流畅
 
-#### 在线访问地址:
+#### 在线访问地址(建议用手机访问):
+https://andluo90.github.io/Celery-Movies/dist/index.html#/
 
 #### 原项目地址:
 https://github.com/andluo90/douban_movies
 
-#### 原项目在线预览(请用手机访问):
+#### 原项目在线预览(建议用手机访问):
 https://andluo90.github.io/douban_movies/dist/index.html
 
 
