@@ -29,7 +29,10 @@ vue/vuex/vue-router/scss/jsonp/axios
 
 
 ### 优化
-有时间打算用TypeScript再重写一遍
+1. 支持图片放大功能
+2. 支持视频播放
+3. 详情页展示评论
+4. 打算用TypeScript再重写一遍
 
 ### 待解决
 由于豆瓣的搜索接口不能再使用，后期打算做成一个动漫手机网
