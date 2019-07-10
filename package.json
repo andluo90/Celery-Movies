@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "andluo <1455234749@qq.com>",
+  "homepage": "https://andluo90.github.io/Celery-Movies",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
