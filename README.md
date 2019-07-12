@@ -1,4 +1,4 @@
-# Douban Movie 
+# Celery-Movies 
 
 > 一个用Vue写的模仿豆瓣电影的手机网站
 > 之前用原生JS+JQuery实现过一次，但是性能一般般，因此重写
