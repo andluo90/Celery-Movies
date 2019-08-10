@@ -2,8 +2,8 @@
     <div class="search" :class="classes">
         <div class="wrap">
                 <div class="search-area">
-                    <input type="search" v-model="value"  placeholder="搜索电影">
-                    <span class="button searching"  >搜索</span>
+                    <input type="search" v-model="value"   placeholder="搜索电影">
+                    <span class="button searching" @click="search">搜索</span>
                 </div>
                 <div class="search-reslut">
                     <div class="container">
@@ -47,7 +47,9 @@ export default {
         }
     },
     methods:{
+        
         search:function(){
+            console.log(`search ${this.value}`)
             jsonp(`//api.douban.com/v2/movie/search?apikey=${this.apikey}&q=${this.value}`,
                 null,
                 (error,data)=>{
