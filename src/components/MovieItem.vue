@@ -8,7 +8,7 @@
             <div class="detail">
                 <h2>{{ movie.title }}</h2>
                 <div class="extra">
-                    <span class="score">{{ movie.rating.average }}</span> / {{ movie.collect_count }}收藏
+                    <span class="score">{{ movie.rating.average.toFixed(1) }}</span> / {{ movie.collect_count }}收藏
                 </div>
                 <div class="extra">{{ movie.year }} / {{ movie.genres.join('、') }}</div>
                 <div class="extra">导演：{{ movie.directors | formatPeople }}</div>

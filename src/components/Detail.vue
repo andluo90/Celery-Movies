@@ -9,7 +9,7 @@
                     <div class="left">
                         <p class="ratting">
                             <span class="star"></span>
-                            <strong class="score">{{ movie.rating.average }}</strong>
+                            <strong class="score">{{ movie.rating.average.toFixed(1) }}</strong>
                             <span class="count">{{ movie.ratings_count }}人评价</span>
                         </p>
                         <p class="meta">{{ meta }}
