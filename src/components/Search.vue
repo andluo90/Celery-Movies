@@ -1,5 +1,6 @@
 <template>
     <div class="search" :class="classes">
+        <Loading v-if="isLoading"></Loading>
         <div class="wrap">
                 <div class="search-area">
                     <input type="search" v-model="value"   placeholder="搜索电影">
@@ -8,7 +9,7 @@
                 <div class="search-reslut">
                     <div class="container">
                         <!-- <MovieList :data="movieList"></MovieList> -->
-                        <div class="error">
+                        <div v-if="!isLoading" class="error">
                             <div>
                                 <span class="iconfont icon-error"></span>
                             </div>
@@ -28,11 +29,13 @@
 <script>
 import MovieList from './MovieList'
 import jsonp from 'jsonp'
+import Loading from './Loading'
 
 export default {
     name:"Search",
     components:{
-        MovieList
+        MovieList,
+        Loading
     },
     data(){
         return {
@@ -42,6 +45,9 @@ export default {
         }
     },
     computed:{
+        isLoading(){
+            return this.$store.state.isLoading
+        },
         classes(){
             return this.$store.state.isShowDetail ? 'hide':''
         }
@@ -50,7 +56,8 @@ export default {
         
         search:function(){
             console.log(`search ${this.value}`)
-            jsonp(`//api.douban.com/v2/movie/search?apikey=${this.apikey}&q=${this.value}`,
+            this.$store.commit('setLoading',{status:true})
+            jsonp(`//movie.douban.com/j/search_subjects?tag=${this.value}`,
                 null,
                 (error,data)=>{
                     if(error){
@@ -61,6 +68,7 @@ export default {
                         console.log("搜索成功.");
                         this.movieList = data.subjects
                     }
+                    this.$store.commit('setLoading',{status:false})
                 }
             )
         }

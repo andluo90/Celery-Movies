@@ -3,7 +3,6 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import { log } from 'util';
 import store from './store'
 import axios from 'axios'
 import VueLazyload from 'vue-lazyload'

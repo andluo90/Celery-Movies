@@ -24,6 +24,7 @@ export default {
     },
     computed:{
       isShowDetail:function(){
+
         return this.$store.state.isShowDetail
       }
     },
