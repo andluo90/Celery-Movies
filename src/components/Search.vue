@@ -8,16 +8,18 @@
                 </div>
                 <div class="search-reslut">
                     <div class="container">
-                        <!-- <MovieList :data="movieList"></MovieList> -->
-                        <div v-if="!isLoading" class="error">
-                            <div>
-                                <span class="iconfont icon-error"></span>
+                        <div>
+                            <MovieList v-if="!error" :data="movieList"></MovieList>
+                            <div v-if="error" class="error">
+                                <div>
+                                    <span class="iconfont icon-error"></span>
+                                </div>
+                                <div>豆瓣搜索接口异常!</div>
+                                <div>请等其恢复，非常报歉!</div>   
                             </div>
-                            <div>豆瓣搜索接口异常!</div>
-                            <div>请等其恢复，非常报歉!</div>
-                            
-                            
                         </div>
+                        
+                        
                         
                     </div>
                     
@@ -42,6 +44,7 @@ export default {
             apikey:'0b2bdeda43b5688921839c8ecb20399b',
             value:'',
             movieList:[],
+            error:null,
         }
     },
     computed:{
@@ -55,7 +58,7 @@ export default {
     methods:{
         
         search:function(){
-            console.log(`search ${this.value}`)
+            this.error = false
             this.$store.commit('setLoading',{status:true})
             jsonp(`//movie.douban.com/j/search_subjects?tag=${this.value}`,
                 null,
@@ -63,10 +66,12 @@ export default {
                     if(error){
                         console.log("搜索失败.");
                         console.log(error);
+                        this.error = true
                     }else{
                         success = true
                         console.log("搜索成功.");
                         this.movieList = data.subjects
+                        this.error = false
                     }
                     this.$store.commit('setLoading',{status:false})
                 }
@@ -111,10 +116,6 @@ export default {
             color: #fff;
             border-radius: 2px;
 
-            &.searching {
-                background: #999;
-                
-            }
             
         }
     }
